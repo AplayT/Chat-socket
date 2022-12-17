@@ -56,10 +56,36 @@
         });
 
 
-        socket.on('chat message', function (msg) {
+        socket.on('chat message', function ({id,msg}) {
+            // let item = document.createElement('li');
+            // let salto = document.createElement('br');
+            // if(id === socket.id) {
+            //     item.setAttribute('class', 'my_msg');
+            // }else{
+            //     item.setAttribute('class', 'other_msg');
+            // }
+            // item.textContent = msg;
+            // mensajes.appendChild(item);
+            // mensajes.appendChild(salto);
+            // window.scrollTo(0, document.body.scrollHeight);
+            // mandarNotificacion(msg);
+
             let item = document.createElement('li');
-            item.textContent = msg;
+            let div = document.createElement('div');
+            // let salto = document.createElement('br');
+
+
+            if(id === socket.id) {
+                item.setAttribute('class', 'my_msg');
+            }else{
+                item.setAttribute('class', 'other_msg');
+            }
+            div.textContent = msg;
+            div.setAttribute('class', 'msg');
+
+            item.appendChild(div);
             mensajes.appendChild(item);
+            // mensajes.appendChild(salto);
             window.scrollTo(0, document.body.scrollHeight);
             mandarNotificacion(msg);
         });
